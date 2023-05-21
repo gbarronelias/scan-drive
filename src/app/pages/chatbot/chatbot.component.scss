@@ -1,0 +1,44 @@
+.full-height {
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/images/background-chat.jpg");
+    background-position: center center;
+    background-attachment: fixed;
+.chat-container{
+    height: calc(100% - 30px);
+    overflow-y:scroll;
+    top: 5%;
+    left: 10%;
+    right: 10%;
+    bottom: 15%;
+}
+.chat-list{
+    margin: 2% 4% 0% 4%;
+}
+}
+.input-container {
+
+    position: fixed;
+    // position: absolute;
+    display: flex;
+    bottom: 5px;
+    left: 4%;
+    right: 4%;
+    margin: 0 5px 0 5px;
+    color: white;
+    input {
+        color: white;
+        background-color: #000000;
+        text-align: center;
+        border-radius: 15px;
+        border: 2px solid #ffff;
+        width: 100%;
+    }
+
+}
+::-webkit-scrollbar {
+    display: none;
+}
