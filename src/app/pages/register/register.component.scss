@@ -3,10 +3,11 @@
 }
 div#login {
     /* Rectangle 74 */
-    padding: 10% 10% 10% 10%;
+    padding: 0 10% 0 10%;
 
     h1{
         font-size: 40px;
+        line-height: 48px;
     }
     p {
         font-size: 20px;
@@ -26,6 +27,7 @@ div#login {
         height: 7vh;
         width: 100%;
         background-color: #000000;
+        color: white;
         border: 2px solid #1400FF;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         border-radius: 20px;
@@ -36,11 +38,12 @@ div#login {
         width: 100%;
         margin-top: 10%;
         border-radius: 20px;
+        border-color: #000000;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 600;
         font-size: 25px;
-        background: linear-gradient(180deg, #1400FF 0%, #000000 73.96%);
+        background: linear-gradient(180deg, #1400FF 0%, #000000 79.96%);
         line-height: 30px;
 
         color: #FFFFFF;
@@ -59,23 +62,21 @@ div#login {
 
 }
 
+img{
+    position: absolute;
+    height: 100%;
+    
+}
+
 .full-height {
     width: 100vw;
     height: 100%;
     min-height: 100%;
-    background-color: #000000;
-    background-position: center center;
+   background-color: #000000;
+    background-position: left center;
     background-attachment: fixed;
-    background-image: url("../../../assets/images/background-login.jpg");
-    background-size: cover;
-    h1#title {
-        font-weight: 400;
-        font-size: 85px;
-        position: absolute;
-        left: 50px;
-        top: 50px;
-        margin: 0px;
-    }
+    // background-image: url("../../images/background-register.jpg");
+    background-size:cover;
 }
 
 div.full-height {
