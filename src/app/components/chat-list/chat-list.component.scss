@@ -1,0 +1,34 @@
+.chat-system {
+    border-radius: 2px 15px 15px 15px;
+    position: relative;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    background: #fff;
+    padding: 10px;
+    padding-bottom: 25px;
+    box-shadow: 2px 2px 20px -2px rgba(60, 51, 176, 0.2);
+    color: rgb(0, 0, 0);
+    margin:0px 0 10px 0;
+}
+
+.chat-user {
+    position: relative;
+    float: right;
+    width: auto;
+    height: auto;
+    background: #5850c0;
+    display: inline-block;
+    padding: 10px;
+    padding-bottom: 25px;
+    color: #fff;
+    border-radius: 15px 2px 15px 15px;
+    box-shadow: 2px 2px 20px rgba(60, 51, 176, 0.2),
+        inset -10px -10px 55px rgba(255, 255, 255, 0.1);
+        margin:0px 0 10px 0;
+}
+
+.chat-content{
+ 
+}
+
