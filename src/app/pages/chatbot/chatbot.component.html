@@ -2,6 +2,7 @@
    <div #chatContainer class="chat-container">
      <div class="chat-list">
       <app-chat-list *ngFor="let i of data" role="{{i.role}}" message="{{i.message}}"></app-chat-list>
+      <app-chat-list *ngIf="showLoadData" role="loading"></app-chat-list>
      </div>
    </div>
    <div class="input-container">

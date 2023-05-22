@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { GenApiService } from 'src/app/services/gen-api.service';
 import { OpenAIApi, Configuration } from 'openai';
 
-  const configuration = new Configuration({
-    apiKey: "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",
-  });
-  const openai = new OpenAIApi(configuration);
+const configuration = new Configuration({
+  apiKey: "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",
+});
+const openai = new OpenAIApi(configuration);
 
 @Component({
   selector: 'app-chatbot',
@@ -16,29 +16,36 @@ import { OpenAIApi, Configuration } from 'openai';
 })
 
 export class ChatbotComponent implements OnInit {
-  data : Message[] = [];
-  userMessage:string = '';
-  isClickeable:boolean = true;
-  myScrollVariable:number = 9999;
+
+  data: Message[] = [];
+  userMessage: string = '';
+  isClickeable: boolean = true;
+  showLoadData: boolean = false;
   @ViewChild('chatContainer') divChat!: ElementRef;
-  // response:Observable<any>= new Observable;
-  constructor(private api:GenApiService){}
-  ngOnInit(){
-    this.setMessage({role:"assistant", content:"Hola Bienvenido a la IA Scan Drive"});
-    // this.scrollDiv();
+
+  constructor(private api: GenApiService) { }
+
+  ngOnInit() {
+    this.setMessage({ role: "assistant", content: "Hola Bienvenido a la IA Scan Drive" });
   }
-  sendMessage(message:string){
+
+  sendMessage(message: string) {
     this.userMessage = '';
-    this.setMessage({role:"user", content:message});
+    this.setMessage({ role: "user", content: message });
     this.scrollDiv();
     this.generateChat(message);
   }
-  async generateChat(message:string){
-    let data = {role:"", content:""};
+
+  async generateChat(message: string) {
+    let data = { role: "", content: "" };
     this.isClickeable = false;
+    setTimeout(() => {
+      this.showLoadData = true;
+    }, 3000)
     Object.assign(data, await this.api.generateChat(message));
     this.setMessage(data);
-    if(data){
+    if (data) {
+      this.showLoadData = false;
       this.scrollDiv();
       this.isClickeable = true;
     }
@@ -47,16 +54,14 @@ export class ChatbotComponent implements OnInit {
   }
 
 
-  setMessage(data:{role:string, content:string}){
-    this.data.push(...[{role:data.role, message:data.content}]);
+  setMessage(data: { role: string, content: string }) {
+    this.data.push(...[{ role: data.role, message: data.content }]);
   }
 
-  scrollDiv(){
-    setTimeout(()=>{
+  scrollDiv() {
+    setTimeout(() => {
       this.divChat.nativeElement.scrollTop = 9999;
     }, 100)
   }
-
-
 
 }

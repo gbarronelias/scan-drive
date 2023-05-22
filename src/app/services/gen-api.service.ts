@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { OpenAIApi, Configuration } from 'openai';
-import { Observable, map, of } from 'rxjs';
 
 
 
