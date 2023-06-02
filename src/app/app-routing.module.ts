@@ -3,11 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { ChatbotComponent } from './pages/chatbot/chatbot.component';
 import { RegisterComponent } from './pages/register/register.component';
-
+import { HomeComponent } from './pages/home/home.component';
+import { MoreInfoComponent } from './pages/more-info/more-info.component';
+import { canActivate, redirectUnauthorizedTo} from '@angular/fire/auth-guard'
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: HomeComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'login',
@@ -20,6 +26,10 @@ const routes: Routes = [
   {
     path: 'chat',
     component: ChatbotComponent
+  },
+  {
+    path: 'more-info',
+    component: MoreInfoComponent
   }
 ];
 

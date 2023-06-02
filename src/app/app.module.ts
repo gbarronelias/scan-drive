@@ -9,6 +9,12 @@ import { ChatbotComponent } from './pages/chatbot/chatbot.component';
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './pages/home/home.component';
+import { MoreInfoComponent } from './pages/more-info/more-info.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -16,13 +22,18 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     ChatbotComponent,
     ChatListComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    MoreInfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase())
   ],
   providers: [],
   bootstrap: [AppComponent]

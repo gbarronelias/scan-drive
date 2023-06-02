@@ -1,44 +1,105 @@
 .full-height {
-    display: block;
-    min-width: 100%;
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../assets/images/background-chat.jpg");
-    background-position: center center;
-    background-attachment: fixed;
-.chat-container{
-    height: calc(100% - 30px);
-    overflow-y:scroll;
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../assets/images/background-chat.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  .chat-container {
+    height: calc(100% - (166px + 20px));
+    overflow-y: scroll;
     top: 5%;
     left: 10%;
     right: 10%;
     bottom: 15%;
-}
-.chat-list{
+    margin: 20px;
+  }
+  .chat-list {
     margin: 2% 4% 0% 4%;
-}
-}
-.input-container {
-
-    position: fixed;
-    // position: absolute;
+  }
+  .title-container {
     display: flex;
-    bottom: 5px;
-    left: 4%;
-    right: 4%;
-    margin: 0 5px 0 5px;
-    color: white;
-    input {
-        color: white;
-        background-color: #000000;
-        text-align: center;
-        border-radius: 15px;
-        border: 2px solid #ffff;
-        width: 100%;
+    justify-content: center;
+    cursor: pointer;
+    img#logo {
+      padding-left: 20px;
+      width: 100px;
+      height: 96px;
+      object-fit: cover;
+    }
+    h1#title {
+      display: flex;
+      align-items: flex-end;
+      font-family: "Tahoma";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 45px;
+      line-height: 54px;
+      color: white;
+      bottom: 10px;
+      margin: 0px;
+    }
+  }
+
+  .text-limitants{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    height: 20px;
+    img{
+        width: 20px; 
+        height: 100%;
+        padding-right: 16px;
+    }
+    p{
+        
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+letter-spacing: 0.08em;
+
+color: #BEABAB;
     }
 
+  }
 }
+.input-container {
+  position: fixed;
+  height: 5%;
+  display: flex;
+  bottom: 5px;
+  left: 4%;
+  right: 4%;
+  margin: 0 5px 0 5px;
+  color: white;
+  border: 3px solid #83a0a4;
+  border-radius: 20px;
+  input {
+    outline: none;
+    color: white;
+    background-color: transparent;
+    text-align: center;
+    width: 100%;
+    border: transparent;
+  }
+  .send {
+    height: 70%;
+    width: 30px;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    padding: 4px 10px 0 0;
+  }
+  
+}
+
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

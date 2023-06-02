@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "scandrive-809e2": {
+      "hosting": {
+        "scan-drivee": [
+          "scandrive-809e2"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "scandrive-809e2"
+  }
+}

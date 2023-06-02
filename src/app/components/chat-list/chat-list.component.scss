@@ -13,8 +13,6 @@
 }
 
 .chat-user {
-    position: relative;
-    float: right;
     width: auto;
     height: auto;
     background: #5850c0;
@@ -44,5 +42,17 @@
     font-weight: 900;
     padding-left: 4%;
     padding-right: 4%;
+}
+
+.assistant-content {
+    width: 100%;
+
+    span{
+        max-width: 70%;
+    }
+}
+.user-content {
+    display: flex;
+    justify-content: flex-end;
 }
 

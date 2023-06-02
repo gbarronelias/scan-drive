@@ -1,19 +1,36 @@
 <div class="full-height">
-    <h1 id="title">SCANDRIVE</h1>
-    <div class="login-container">
-        <div id="login">
-            <h1 class="no-margin">Inicio de sesión</h1>
-        <p>inicia sesión con tu cuenta <b>ScanDrive</b> </p>
-    
-        <form action="">
-            <p>Email</p>
-            <input type="email" placeholder="hey@tucuenta.com">
-            <p>Contraseña</p>
-            <input type="password" placeholder="introduce tu Contraseña"><br>
-            <button>Iniciar Sesión</button>
-            <p class="center">¿no tienes cuenta? <a href="/register">Crear Cuenta</a> </p>
-        </form>
-        </div>
-    </div>
+  <div class="title-container">
+    <img id="logo" src="assets/logos/logo.png" />
+    <h1 id="title">ScanDrive</h1>
+  </div>
+  <div class="home-icon">
+    <img src="assets/logos/menu.png" routerLink="/home" /><br />
+    <a href="/home">Inicio</a>
+  </div>
+  <div class="login-container">
+    <div id="login">
+      <h1 class="no-margin">Inicio de sesión</h1>
+      <p>inicia sesión con tu cuenta <b>ScanDrive</b></p>
 
+      <p>Email</p>
+      <input 
+      type="email" 
+      placeholder="hey@tucuenta.com" 
+      [(ngModel)]="email" 
+      value=""
+      (keyup.enter)="isEmpty(email)"
+      />
+      <p>Contraseña</p>
+      <input
+        type="password"
+        placeholder="introduce tu Contraseña"
+        [(ngModel)]="password"
+        (keyup.enter)="isEmpty(password)"
+      /><br />
+      <button (click)="login()" >Iniciar Sesión</button>
+      <p class="center">
+        ¿no tienes cuenta? <a href="/register">Crear Cuenta</a>
+      </p>
+    </div>
+  </div>
 </div>

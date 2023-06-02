@@ -1,88 +1,111 @@
-:host{
-    font-family: 'Inter';
+:host {
+  font-family: "Inter";
 }
 div#login {
-    /* Rectangle 74 */
-    padding: 10% 10% 10% 10%;
+  /* Rectangle 74 */
+  padding: 10% 10% 10% 10%;
+  h1 {
+    font-size: 40px;
+  }
+  p {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
 
-    h1{
-        font-size: 40px;
+  p.center {
+    text-align: center;
+    font-size: 20px;
+    a {
+      color: white;
     }
-    p {
-        font-size: 20px;
-        margin-bottom: 5px;
-    }
+  }
 
-    p.center {
-        text-align: center;
-        font-size: 20px;
-        a {
-            color: white;
-        }
-    }
+  input {
+    color: white;
+    text-align: center;
+    height: 7vh;
+    width: 100%;
+    background-color: #000000;
+    border: 2px solid #1400ff;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 20px;
+    box-sizing: border-box;
+  }
 
-    input {
-        text-align: center;
-        height: 7vh;
-        width: 100%;
-        background-color: #000000;
-        border: 2px solid #1400FF;
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-        border-radius: 20px;
-        box-sizing: border-box;
-    }
+  button {
+    width: 100%;
+    margin-top: 10%;
+    border-radius: 20px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    background: linear-gradient(180deg, #1400ff 0%, #000000 73.96%);
+    line-height: 30px;
 
-    button {
-        width: 100%;
-        margin-top: 10%;
-        border-radius: 20px;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 25px;
-        background: linear-gradient(180deg, #1400FF 0%, #000000 73.96%);
-        line-height: 30px;
-
-        color: #FFFFFF;
-    }
-
+    color: #ffffff;
+  }
 }
 
 .login-container {
-    position: absolute;
-    width: 40%;
-    top: 10%;
-    bottom: 10%;
-    right: 20px;
-    background-color: #000000;
-    border-radius: 15px;
-
+  position: absolute;
+  width: 40%;
+  top: 10%;
+  bottom: 10%;
+  right: 20px;
+  background-color: #000000;
+  border-radius: 15px;
 }
 
 .full-height {
-    width: 100vw;
-    height: 100%;
-    min-height: 100%;
-    background-color: #000000;
-    background-position: center center;
-    background-attachment: fixed;
-    background-image: url("../../../assets/images/background-login.jpg");
-    background-size: cover;
-    h1#title {
-        font-weight: 400;
-        font-size: 85px;
-        position: absolute;
-        left: 50px;
-        top: 50px;
-        margin: 0px;
+  width: 100vw;
+  height: 100%;
+  min-height: 100%;
+  background-color: #000000;
+  background-position: center center;
+  background-attachment: fixed;
+  background-image: url("../../../assets/images/background-login.jpg");
+  background-size: cover;
+  .title-container {
+    display: flex;
+    img#logo {
+      padding-left: 20px;
+      width: 100px;
+      height: 96px;
+      object-fit: cover;
     }
+    h1#title {
+      display: flex;
+      align-items: flex-end;
+      font-family: "Tahoma";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 45px;
+      line-height: 54px;
+      color: #1334e3;
+      bottom: 10px;
+      margin: 0px;
+    }
+  }
+  .home-icon {
+    position: absolute;
+    top: 5px;
+    right: 2%;
+    img {
+      align-items: center;
+    }
+    a {
+      color: white;
+      text-align: center;
+    }
+  }
 }
 
 div.full-height {
-    color: white;
-    margin-top: 0px;
+  color: white;
+  margin-top: 0px;
 }
 
 .no-margin {
-    margin: 0px
+  margin: 0px;
 }

@@ -1,20 +1,22 @@
 <img src="assets\images\background-register.jpg">
 <div class="full-height">
+    <div class="home-icon">
+        <img src="assets/logos/menu.png" routerLink="/home"><br>
+        <a href="/home">Inicio</a>
+    </div>
     <div class="login-container">
         <div id="login">
             <h1 class="no-margin">REGISTRATE</h1>
         <p style="margin-top: 0px">Date de alta registrando los siguientes datos </p>
     
-        <form action="">
             <p>Nombre</p>
             <input type="text" placeholder="hey@tucuenta.com">
             <p>Email</p>
-            <input type="email" placeholder="hey@tucuenta.com">
+            <input type="email" placeholder="hey@tucuenta.com" [(ngModel)]="user" >
             <p>Contraseña</p>
-            <input type="password" placeholder="introduce tu Contraseña"><br>
-            <button>Crear Cuenta</button>
+            <input type="password" placeholder="introduce tu Contraseña" [(ngModel)]="password"><br>
+            <button (click)="register()">Crear Cuenta</button>
             <p class="center">¿ya tienes cuenta? <a href="/login">inicia sesión</a> </p>
-        </form>
         </div>
     </div>
 

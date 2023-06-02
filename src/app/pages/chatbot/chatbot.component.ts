@@ -31,9 +31,13 @@ export class ChatbotComponent implements OnInit {
 
   sendMessage(message: string) {
     this.userMessage = '';
-    this.setMessage({ role: "user", content: message });
-    this.scrollDiv();
-    this.generateChat(message);
+    if(message !== ''){
+      this.setMessage({ role: "user", content: message });
+      this.scrollDiv();
+      this.generateChat(message);
+    }else{
+      alert('Introduce un dato valido');
+    }
   }
 
   async generateChat(message: string) {
@@ -41,7 +45,7 @@ export class ChatbotComponent implements OnInit {
     this.isClickeable = false;
     setTimeout(() => {
       this.showLoadData = true;
-    }, 3000)
+    }, 100)
     Object.assign(data, await this.api.generateChat(message));
     this.setMessage(data);
     if (data) {
