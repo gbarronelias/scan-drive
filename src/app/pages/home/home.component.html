@@ -10,9 +10,9 @@
             <img src="assets/logos/auto.png">
             <p class="no-margin">Realizar diagnostico</p>
         </div>
-        <div class="container" routerLink="/login">
+        <div class="container" (click)="navigate('/login')">
             <img src="assets/logos/sesion.png">
-            <p class="no-margin">Iniciar Sesión</p>
+            <p class="no-margin">{{loginText}}</p>
         </div>
     </div>
     <h1 class="content"> Cuidar de tu auto, <br><br>mejora la vida de su motor</h1>

@@ -15,6 +15,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     ChatListComponent,
     RegisterComponent,
     HomeComponent,
-    MoreInfoComponent
+    MoreInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +34,11 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase())
+    provideDatabase(() => getDatabase()),
+    ToastrModule.forRoot({
+      positionClass:'toast-bottom-center',
+      timeOut: 500
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

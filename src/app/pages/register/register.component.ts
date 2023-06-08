@@ -9,11 +9,12 @@ import { GenApiService } from 'src/app/services/gen-api.service';
 export class RegisterComponent {
   user: string = '';
   password: string = '';
+  nombre!: string;
 
   constructor(private api: GenApiService) {}
 
   register() {
     this.api
-      .register({ email: this.user, password: this.password });
+      .register({ email: this.user, password: this.password, nombre: this.nombre });
   }
 }

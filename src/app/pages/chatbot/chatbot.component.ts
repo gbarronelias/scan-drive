@@ -3,6 +3,8 @@ import { Message } from 'src/app/interface';
 import { Observable } from 'rxjs';
 import { GenApiService } from 'src/app/services/gen-api.service';
 import { OpenAIApi, Configuration } from 'openai';
+import { ref } from 'firebase/database';
+import { Database, onValue } from '@angular/fire/database';
 
 const configuration = new Configuration({
   apiKey: "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",
@@ -23,10 +25,25 @@ export class ChatbotComponent implements OnInit {
   showLoadData: boolean = false;
   @ViewChild('chatContainer') divChat!: ElementRef;
 
-  constructor(private api: GenApiService) { }
+  constructor(
+    private api: GenApiService,
+    private database:Database) { }
 
   ngOnInit() {
-    this.setMessage({ role: "assistant", content: "Hola Bienvenido a la IA Scan Drive" });
+    
+    const data = this.getMessages();
+    console.log(data);
+    // this.setMessage({ role: "assistant", content: "Hola Bienvenido a la IA Scan Drive" });
+  }
+
+  getMessages(){
+    this.showLoadData = true;
+    const startConfig = ref(this.database, this.api.uuid);
+    onValue(startConfig, (snapshot)=>{
+      console.log('snapshot', snapshot.val().messages)
+      this.data = snapshot.val().messages;
+      this.showLoadData=false;
+    });
   }
 
   sendMessage(message: string) {
@@ -60,6 +77,7 @@ export class ChatbotComponent implements OnInit {
 
   setMessage(data: { role: string, content: string }) {
     this.data.push(...[{ role: data.role, message: data.content }]);
+    this.api.setMessages(this.data);
   }
 
   scrollDiv() {
