@@ -30,18 +30,20 @@ export class ChatbotComponent implements OnInit {
     private database:Database) { }
 
   ngOnInit() {
-    
     const data = this.getMessages();
-    console.log(data);
-    // this.setMessage({ role: "assistant", content: "Hola Bienvenido a la IA Scan Drive" });
   }
-
+  
   getMessages(){
     this.showLoadData = true;
     const startConfig = ref(this.database, this.api.uuid);
     onValue(startConfig, (snapshot)=>{
-      console.log('snapshot', snapshot.val().messages)
-      this.data = snapshot.val().messages;
+      console.log('snapshot', snapshot.val()?.messages && snapshot);
+      if(snapshot.val()?.messages.length > 0){
+        this.data = snapshot.val().messages;
+        console.log('snapshot', snapshot.val())
+      }else{
+        this.setMessage({ role: "assistant", content: "Hola Bienvenido a la IA Scan Drive" });
+      }
       this.showLoadData=false;
     });
   }

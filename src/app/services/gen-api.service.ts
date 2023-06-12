@@ -16,7 +16,7 @@ import { ref, set } from 'firebase/database';
 import { Message } from '../interface';
 
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: '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',
 });
 const openai = new OpenAIApi(configuration);
 
