@@ -37,7 +37,7 @@ import {ToastrModule} from 'ngx-toastr';
     provideDatabase(() => getDatabase()),
     ToastrModule.forRoot({
       positionClass:'toast-bottom-center',
-      timeOut: 500
+      timeOut: 2000
     })
   ],
   providers: [],

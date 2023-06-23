@@ -1,19 +1,74 @@
 <div class="full-height">
-   <div class="title-container" routerLink="/">
-      <img id="logo" src="assets/logos/logo.png" />
-      <h1 id="title">ScanDrive</h1>
-   </div>
-   <div class="text-limitants"> <img src="assets/logos/menu.png"> <p> Limitaciones</p></div>
-   <div #chatContainer class="chat-container">
-     <div class="chat-list">
-      <app-chat-list *ngFor="let i of data" role="{{i.role}}" message="{{i.message}}"></app-chat-list>
+  <div class="menu">
+    <h2>Mis búsquedas</h2>
+    <p (click)="newMessage()">+ New Message</p>
+    <p *ngFor="let item of listMessages" (click)="onClickMessage(item.id)">
+      {{'-- '}}{{item.messages[1]?.message || item.messages[0]?.message }}
+    </p>
+  </div>
+  <div class="title-container" routerLink="/">
+    <img id="logo" src="assets/logos/logo.png" />
+    <h1 id="title">ScanDrive</h1>
+  </div>
+  <div class="tutorial" *ngIf="tutorial">
+      <div id="firstContainer">
+         <img src="" alt="">
+         <p class="title">Ejemplos</p>
+         <div class="container">
+            <p> ¿Qué hago si mi auto se apaga? </p>
+         </div>
+         <div class="container">
+            <p> ¿Qué hago si mi auto expulsa humo azul? </p>
+         </div>
+         <div class="container">
+            <p> ¿Qué hago si mi auto pierde fuerza? </p>
+         </div>
+      </div>
+      <div id="secondContainer">
+         <img src="" alt="">
+         <p class="title">Recuerda la frase clave</p>
+         <div class="container">
+            <p> ¿Qué hago si mi auto...? </p>
+         </div>
+      </div>
+      <div id="thirdContainer">
+         <img src="" alt="">
+         <p class="title">Limitaciones</p>
+         <div class="container">
+            <p>Conocimiento limitado a eventos de la industria automotriz después de 2020</p>
+         </div>
+         <div class="container">
+            <p> Dificultad para entender palabras inapropiadas  </p>
+         </div>
+         <div class="container">
+            <p> No responde a preguntas que no se relacionen con una falla de un automóvil </p>
+         </div>
+      </div>
+  </div>
+  <div #chatContainer class="chat-container" *ngIf="!tutorial">
+    <div class="chat-list">
+      <app-chat-list
+        *ngFor="let i of messages"
+        role="{{ i.role }}"
+        message="{{ i.message }}"
+      ></app-chat-list>
       <app-chat-list *ngIf="showLoadData" role="loading"></app-chat-list>
-     </div>
-   </div>
-   <div class="input-container">
-      <input [(ngModel)]="userMessage" type="text" placeholder="Ingresa tu busqueda" autofocus (keyup.enter)="sendMessage(userMessage)">
-      <!-- <button [disabled]="!isClickeable" (click)='sendMessage(userMessage)' > -->
-         <img (click)='sendMessage(userMessage)' class="send" src="assets/logos/enviar.png" >
-      <!-- </button> -->
-   </div>
+    </div>
+  </div>
+  <div class="input-container">
+    <input
+      [(ngModel)]="userMessage"
+      type="text"
+      placeholder="Ingresa tu busqueda"
+      autofocus
+      (keyup.enter)="sendMessage(userMessage)"
+    />
+    <!-- <button [disabled]="!isClickeable" (click)='sendMessage(userMessage)' > -->
+    <img
+      (click)="sendMessage(userMessage)"
+      class="send"
+      src="assets/logos/enviar.png"
+    />
+    <!-- </button> -->
+  </div>
 </div>

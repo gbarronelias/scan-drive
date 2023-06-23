@@ -10,13 +10,11 @@
   background-size: cover;
   background-attachment: fixed;
   .chat-container {
-    height: calc(100% - (166px + 20px));
+    height: calc(100% - (180px + 20px));
+    width: 80%;
     overflow-y: scroll;
-    top: 5%;
-    left: 10%;
-    right: 10%;
-    bottom: 15%;
     margin: 20px;
+    margin-left: calc(20% );
   }
   .chat-list {
     margin: 2% 4% 0% 4%;
@@ -45,29 +43,87 @@
     }
   }
 
-  .text-limitants{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 20px;
-    height: 20px;
-    img{
-        width: 20px; 
-        height: 100%;
-        padding-right: 16px;
+  .tutorial {
+    margin-left: calc(20% + 20px);
+    padding-right: 20px;
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    div{
+      padding: 0 25px;
     }
     p{
-        
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 15px;
-line-height: 18px;
-letter-spacing: 0.08em;
-
-color: #BEABAB;
+      margin: 0px;
+    }
+    div#firstContainer, div#thirdContainer{
+      padding-top: 40px;
+    }
+    .container {
+      background-color: #211F26;
+      margin-top: 10px;
+      padding:15px;
+      border-radius: 7px;
+      color: var(--m-3-sys-dark-on-surface-variant, #CAC4D0);
+      font-size: 16px;
+      font-family: Roboto;
+      line-height: 20px;
+      letter-spacing: 0.25px;
+    }
+    p.title{
+      color: #BEABAB;
+      text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      font-size: 20px;
+      font-family: Inter;
+      letter-spacing: 1.6px;
+      text-align: center;
+    }
+    div#firstContainer {
+      .container:not(:last-of-type){
+        margin-bottom: 32px;
+      }
+    }
+    div#secondContainer {
+      .container{        
+      font-size: 24px;
+      text-align: center;
+      padding: 0;
+        p {
+        padding:15px 3.5px;
+        }
+      }
+    }
+    div#thirdContainer {
+      .container:not(:last-of-type){
+        margin-bottom: 32px;
+      }
     }
 
+  }
+
+  .menu{
+    position: absolute;
+    height: calc(100%);
+    width: 20%;
+    background-color: #211F26;
+    padding: 0px 10px 0 10px;
+    border-end-end-radius: 15px;
+    p{
+      cursor: pointer;
+    }
+    p:not(:first-of-type){
+      border-bottom: 0.5px solid gray;
+      padding-bottom: 10px;
+    }
+    p:first-of-type{
+      margin-left: 5px;
+      text-align: center;
+      padding: 5px;
+      border: 0.3px solid gray;
+      border-radius: 10px;
+    }
+    h2{
+      text-align: center;
+    }
   }
 }
 .input-container {
@@ -75,7 +131,7 @@ color: #BEABAB;
   height: 5%;
   display: flex;
   bottom: 5px;
-  left: 4%;
+  left: calc( 20% + 20px);
   right: 4%;
   margin: 0 5px 0 5px;
   color: white;

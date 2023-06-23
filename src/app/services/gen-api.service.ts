@@ -11,12 +11,12 @@ import { updateProfile } from 'firebase/auth';
 import { Toast } from 'ngx-toastr';
 import { OpenAIApi, Configuration } from 'openai';
 import { environment } from 'src/environments/environment';
-import { Database, onValue } from '@angular/fire/database';
+import { Database, onValue, push } from '@angular/fire/database';
 import { ref, set } from 'firebase/database';
-import { Message } from '../interface';
+import { Message, MessageData } from '../interface';
 
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: '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',
 });
 const openai = new OpenAIApi(configuration);
 
@@ -26,6 +26,8 @@ const openai = new OpenAIApi(configuration);
 export class GenApiService implements OnInit{
   uuid:string = '';
   messages!: [];
+  dataMessages:MessageData[] = [];
+
   constructor(
     private auth: Auth,
     private database: Database,
@@ -48,9 +50,12 @@ export class GenApiService implements OnInit{
     }
 
   async generateChat(message: string) {
+    if(!message.includes('auto' || 'carro' || 'vehiculo')){
+      return;
+    }
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'system', content: `Que hago si mi auto ${message}` }],
+      messages: [{ role: 'system', content: `${message}` }],
       temperature: 0.2,
     });
     let data = { role: '', content: '' };
@@ -90,9 +95,28 @@ export class GenApiService implements OnInit{
     .catch((error) => console.log(error));
   }
 
-  setMessages (messages:Message[]){
-    set(ref(this.database, this.uuid), {
-      'messages': messages
+  newMessage(){
+
+  }
+  setMessage (message:Message[], index:any = null, isNew:any = false){
+    // this.dataMessages.push(...[{fecha: this.getDate().fullDate ,message}]);
+    console.log(this.dataMessages);
+    if(isNew){
+      push(ref(this.database, this.uuid), {message});
+    }
+    if(index !== null)
+    set(ref(this.database, this.uuid+'/'+index), {message});
+  }
+
+  getMessages(){
+    const startConfig = ref(this.database, this.uuid+'/');
+    onValue(startConfig, (snapshot)=>{
+      if(snapshot.val()?.length > 0 && snapshot.val() && this.dataMessages.length != 0){
+        console.log('entro')
+        // this.dataMessages = snapshot.val();
+      }else{
+
+      }
     });
   }
   
@@ -114,6 +138,15 @@ export class GenApiService implements OnInit{
       case 'warning':
         this.toast.warning(message);
       break;
+    }
+  }
+
+  getDate(){
+    return {
+      day: new Date().getDate(),
+      month: new Date().getMonth()+1,
+      year: new Date().getFullYear(),
+      fullDate: new Date().getDate() + "-" +( new Date().getMonth()+1) + "-" + new Date().getFullYear()
     }
   }
 }

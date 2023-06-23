@@ -12,11 +12,15 @@ interface Choice {
   finish_reason: string;
   index: number;
 }
-
+export interface MessageData {
+  fecha: String,
+  message: Message[]
+}
 export interface Message {
   role: string;
   message: string;
 }
+
 
 interface Usage {
   prompt_tokens: number;
