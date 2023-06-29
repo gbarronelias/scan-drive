@@ -1,10 +1,12 @@
 <div class="full-height">
   <div class="menu">
     <h2>Mis búsquedas</h2>
-    <p (click)="newMessage()">+ New Message</p>
-    <p *ngFor="let item of listMessages" (click)="onClickMessage(item.id)">
-      {{'-- '}}{{item.messages[1]?.message || item.messages[0]?.message }}
-    </p>
+    <p id="newMessage" (click)="newMessage()">+ New Message</p>
+    <div id="listMessages">
+      <p *ngFor="let item of listMessages" (click)="onClickMessage(item.id)">
+        {{'-- '}}{{item.messages[1]?.message || item.messages[0]?.message }}
+      </p>
+    </div>
   </div>
   <div class="title-container" routerLink="/">
     <img id="logo" src="assets/logos/logo.png" />

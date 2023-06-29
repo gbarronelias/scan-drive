@@ -28,15 +28,21 @@ export class ChatbotComponent implements OnInit {
     private database:Database) { }
 
   ngOnInit() {
+    console.log(this.api.uuid)
+    if(this.api.uuid !== '')
     this.getMessages(this.api.uuid);
     this.tutorial = true;
   }
   
   newMessage(){
+    if(this.listChatDisable){
+      this.api.setToast('warning','Espere! ya se está haciendo una consulta')
+      return;
+    }
     this.messages=[];
     this.indexMessage= null;
     this.tutorial=false;
-    this.setMessage({ role: "assistant", content: "Hola Bienvenido a la IA Scan Drive" }, true);
+    this.setMessage({ role: "assistant", content: "Hola! Bienvenido a la IA Scan Drive." }, true);
   }
 
   getMessages(route:any){
@@ -46,6 +52,10 @@ export class ChatbotComponent implements OnInit {
       console.log(snapshot.val());
       if(snapshot.val() && snapshot){
       this.listMessages = Object.keys(snapshot.val());
+      if(!this.indexMessage){
+        this.indexMessage = this.listMessages[this.listMessages.length - 1];
+        this.ClickMessage(this.indexMessage);
+      }
       console.log(this.listMessages);
       const _parseData = [];
         for(let i=0; i<this.listMessages.length; i++){
@@ -63,25 +73,36 @@ export class ChatbotComponent implements OnInit {
 
   onClickMessage(index:any){
     if(this.listChatDisable){
+      this.api.setToast('warning','Espere! ya se está haciendo una consulta')
       return;
     }
         this.tutorial=false;
         this.indexMessage = index;
-        const startConfig = ref(this.database, this.api.uuid+'/'+index);
-        onValue(startConfig, (snapshot)=>{
-          if(snapshot.val() && snapshot){
-            this.messages = snapshot.val()?.message;
-            this.listChatDisable = false;
-          }
-          this.showLoadData=false;
-          this.scrollDiv();
-        });
+        this.ClickMessage(index);
+  }
+
+  ClickMessage(index:any){
+    const startConfig = ref(this.database, this.api.uuid+'/'+index);
+    onValue(startConfig, (snapshot)=>{
+      if(snapshot.val() && snapshot){
+        this.messages = snapshot.val()?.message;
+        this.listChatDisable = false;
+      }
+      this.showLoadData=false;
+      this.scrollDiv();
+    });
   }
 
   sendMessage(message: string) {
     if(this.tutorial){
       this.newMessage();
       this.indexMessage = this.listMessages[this.listMessages.length-1].id;
+    }
+    if(!message.includes('?')){
+      message = message+'?';
+    }
+    if(!message.includes('¿')){
+      message = '¿'+message;
     }
     this.userMessage = '';
     if(message !== ''){
@@ -112,7 +133,9 @@ export class ChatbotComponent implements OnInit {
 
   setMessage(data: { role: string, content: string }, isNew:Boolean = false) {
     this.messages.push(...[{ role: data.role, message: data.content }]);
-    this.api.setMessage(this.messages, this.indexMessage , isNew);
+    if(this.api.uuid){
+      this.api.setMessage(this.messages, this.indexMessage , isNew);
+    }
   }
 
   scrollDiv() {

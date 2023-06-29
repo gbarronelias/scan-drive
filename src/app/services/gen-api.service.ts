@@ -16,7 +16,7 @@ import { ref, set } from 'firebase/database';
 import { Message, MessageData } from '../interface';
 
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: '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',
 });
 const openai = new OpenAIApi(configuration);
 
@@ -51,12 +51,12 @@ export class GenApiService implements OnInit{
 
   async generateChat(message: string) {
     if(!message.includes('auto' || 'carro' || 'vehiculo')){
-      return;
+      message = message + ' mi auto';
     }
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'system', content: `${message}` }],
-      temperature: 0.2,
+      temperature: 1,
     });
     let data = { role: '', content: '' };
     Object.assign(data, completion.data.choices[0].message);
@@ -67,40 +67,38 @@ export class GenApiService implements OnInit{
     return createUserWithEmailAndPassword(this.auth, email, password)
     .then((res) => {
       console.log(res)
-      this.toast.success(`Bienvenido ${res.user.displayName}`);
-      this.router.navigate(['/chat']);
-      localStorage.setItem('uuid', res.user.uid);
+      debugger
       const user = this.auth.currentUser;
       if(user){
-        updateProfile(user, {displayName: nombre});
-        res.user.displayName ? localStorage.setItem('displayName', res.user.displayName) : '';
+        this.uuid = res.user.uid;
+        updateProfile(user, {displayName: nombre}).then(()=>{          
+          this.uuid = res.user.uid;
+          localStorage.setItem('uuid', res.user.uid);
+          this.router.navigate(['/home']);
+          res.user.displayName ? localStorage.setItem('displayName', res.user.displayName) : '';
+          this.toast.success(`Bienvenido ${res.user.displayName}`);
+        });
       }
     })
     .catch((error) => {
       console.log(error)
       alert('Usuario o contraseña incorrecto');
     });
-    
   }
 
   login({ email, password }: any) {
     return signInWithEmailAndPassword(this.auth, email, password)
     .then((response) => {
-      this.setToast('success',`Bienvenido ${response.user.displayName}`);
-      console.log('response login', response)
+      //this.setToast('success',`Bienvenido ${response.user.displayName}`);
       localStorage.setItem('uuid', response.user.uid);
+      this.uuid = response.user.uid;
       response.user.displayName ? localStorage.setItem('displayName', response.user.displayName) : '';
       this.router.navigate(['home']);
     })
     .catch((error) => console.log(error));
   }
 
-  newMessage(){
-
-  }
   setMessage (message:Message[], index:any = null, isNew:any = false){
-    // this.dataMessages.push(...[{fecha: this.getDate().fullDate ,message}]);
-    console.log(this.dataMessages);
     if(isNew){
       push(ref(this.database, this.uuid), {message});
     }
@@ -120,10 +118,23 @@ export class GenApiService implements OnInit{
     });
   }
   
+  logout(){
+    const toast = this.toast.warning(`Si quieres cerrar sesión da click de nuevo`);
+    toast.onTap.subscribe(acction=>{
+      this.auth.signOut().then(()=>{
+        localStorage.setItem('uuid', '');
+        localStorage.setItem('displayName', '');
+        this.uuid = '';
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+        this.router.navigate(['/home']));
+        this.toast.success('Sessión cerrada con exito');
+      })
+    });
+  }
   setToast(type:string ,message:string, config:any = null ){
-    if(config && config.hasOwnProperty('logout')){
+    if(config && config?.logout){
       this.toast.toastrConfig.positionClass = config.positionClass;
-
+      this.logout();
     }
     switch(type){
       case 'success':

@@ -22,7 +22,7 @@ constructor(private api:GenApiService, private router:Router){}
 
   navigate(navigate:string){
     if(navigate.includes('login') && localStorage.getItem('displayName')){
-      this.api.setToast('warning', `Si quieres cerrar sesión da click de nuevo`, {logout:true, positionClass: 'toast-center-center'})
+      this.api.logout()
       return;
     }
     this.router.navigate([navigate]);

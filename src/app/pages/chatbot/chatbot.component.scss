@@ -107,14 +107,18 @@
     background-color: #211F26;
     padding: 0px 10px 0 10px;
     border-end-end-radius: 15px;
+    div#listMessages{
+      overflow: scroll;
+      max-height: 85%;
+    }
     p{
       cursor: pointer;
     }
-    p:not(:first-of-type){
+    p{
       border-bottom: 0.5px solid gray;
       padding-bottom: 10px;
     }
-    p:first-of-type{
+    p#newMessage{
       margin-left: 5px;
       text-align: center;
       padding: 5px;
