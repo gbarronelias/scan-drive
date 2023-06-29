@@ -21,6 +21,7 @@ export class ChatbotComponent implements OnInit {
   indexMessage: any = null;
   listChatDisable: any = false;
   tutorial!:boolean;
+  isLogged!:Boolean;
   @ViewChild('chatContainer') divChat!: ElementRef;
 
   constructor(
@@ -29,8 +30,10 @@ export class ChatbotComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.api.uuid)
-    if(this.api.uuid !== '')
-    this.getMessages(this.api.uuid);
+    if(this.api.uuid !== ''){
+      this.getMessages(this.api.uuid);
+      this.isLogged = true;
+    }
     this.tutorial = true;
   }
   
@@ -96,6 +99,7 @@ export class ChatbotComponent implements OnInit {
   sendMessage(message: string) {
     if(this.tutorial){
       this.newMessage();
+      if(this.api.uuid)
       this.indexMessage = this.listMessages[this.listMessages.length-1].id;
     }
     if(!message.includes('?')){

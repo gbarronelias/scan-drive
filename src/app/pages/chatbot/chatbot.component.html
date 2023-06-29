@@ -1,5 +1,5 @@
 <div class="full-height">
-  <div class="menu">
+  <div class="menu" >
     <h2>Mis búsquedas</h2>
     <p id="newMessage" (click)="newMessage()">+ New Message</p>
     <div id="listMessages">
@@ -7,6 +7,7 @@
         {{'-- '}}{{item.messages[1]?.message || item.messages[0]?.message }}
       </p>
     </div>
+      <p style="text-align: center;" *ngIf="!isLogged">"Inicia sesión para almacenar tus busquedas"</p>
   </div>
   <div class="title-container" routerLink="/">
     <img id="logo" src="assets/logos/logo.png" />

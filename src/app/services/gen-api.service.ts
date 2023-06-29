@@ -16,7 +16,7 @@ import { ref, set } from 'firebase/database';
 import { Message, MessageData } from '../interface';
 
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: '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',
 });
 const openai = new OpenAIApi(configuration);
 
@@ -76,7 +76,6 @@ export class GenApiService implements OnInit{
           localStorage.setItem('uuid', res.user.uid);
           this.router.navigate(['/home']);
           res.user.displayName ? localStorage.setItem('displayName', res.user.displayName) : '';
-          this.toast.success(`Bienvenido ${res.user.displayName}`);
         });
       }
     })
